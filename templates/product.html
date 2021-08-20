@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<section class="product-section">
+    <div class="container">
+        {% for d in data%}
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="product-pic-zoom">
+                    <img class="product-big-img" src="media/{{d.product_image }}" alt="">
+                </div>
+
+            </div>
+            <div class="col-lg-6 product-details">
+                <h2 class="p-title">{{d.product_name}}</h2>
+                <h3 class="p-price">Base price ${{d.base_price}}</h3>
+                {% if d.auction_day_left != 0 %}
+                <h3 class="p-price">Highest auction price ${{d.high_price}}</h3>
+                <h3 class="p-price">Auction Day left - {{d.auction_day_left}}</h3>
+                <form class="contact-form" action='placeBid?id={{d.product_id}}' method="post"
+                    enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="quantity">
+                        <p>Your price</p>
+                        <div class="pro-qty">
+                            <input type="text" value="{{d.high_price}}" name="high_price">
+                        </div>
+                    </div>
+                    <p>{{msg}}</p>
+                    <button class="site-btn" type="submit">Place Your Bid</button>
+                </form>
+                <hr>
+                <hr>
+                <a href="addWatchList?id={{d.product_id}}" class="site-btn sb-dark">Add to watchlist</a>
+
+                {% else %}
+                <h3 class="p-price">Sold at ${{d.high_price}}</h3>
+                {% endif %}
+                <div id="accordion" class="accordion-area">
+                    <div class="panel">
+                        <div class="panel-header" id="headingOne">
+                            <button class="panel-link active" data-toggle="collapse" data-target="#collapse1"
+                                aria-expanded="true" aria-controls="collapse1">information</button>
+                        </div>
+                        <div id="collapse1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="panel-body">
+                                <p>{{d.information}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header" id="headingTwo">
+                            <button class="panel-link" data-toggle="collapse" data-target="#collapse2"
+                                aria-expanded="false" aria-controls="collapse2">care details </button>
+                        </div>
+                        <div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="panel-body">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so
+                                    dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus.
+                                    Ut consectetur lacus leo, non scelerisque nulla euismod nec.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header" id="headingThree">
+                            <button class="panel-link" data-toggle="collapse" data-target="#collapse3"
+                                aria-expanded="false" aria-controls="collapse3">shipping & Returns</button>
+                        </div>
+                        <div id="collapse3" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="panel-body">
+                                <h4>7 Days Returns</h4>
+                                <p>Cash on Delivery Available<br>Home Delivery <span>3 - 4 days</span></p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so
+                                    dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus.
+                                    Ut consectetur lacus leo, non scelerisque nulla euismod nec.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<!-- Category section end -->
+
+
+{% endblock %}

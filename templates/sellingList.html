@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<section class="cart-section spad">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="cart-table">
+					<h3>My Selling</h3>
+					<div class="cart-table-warp">
+						<table>
+							<thead>
+								<tr>
+									<th class="product-th">Product</th>
+									<th class="quy-th">Base price</th>
+									<th class="size-th">Auction Time left </th>
+									<th class="total-th"> Highest price</th>
+									<th class="total-th"> Status </th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for d in data%}
+								<tr>
+									<td class="product-col">
+										<a href="product?id={{d.product_id}}">
+											<img src="media/{{d.product_image }}" alt="">
+										</a>
+										<div class="pc-title">
+											<a href="product?id={{d.product_id}}">
+												<h4>{{d.product_name}}</h4>
+											</a>
+
+										</div>
+
+									</td>
+									<td class="total-col">
+										<h4>${{d.base_price}}</h4>
+									</td>
+									<td class="size-col">
+										<h4>{{d.auction_day_left}} days</h4>
+									</td>
+									<td class="total-col">
+										<h4>${{d.high_price}}</h4>
+									</td>
+									{% if d.auction_day_left != 0 %}
+									<td class="total-col">in Auction</td>
+									{% else %}
+									<td class="total-col">sold at ${{d.high_price}}</td>
+									{% endif %}
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+					<div class="total-cost">
+					</div>
+				</div>
+			</div>
+		</div>
+</section>
+<!-- cart section end -->
+
+
+{% endblock %}

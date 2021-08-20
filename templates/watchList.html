@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<section class="product-filter-section">
+    <div class="container">
+        <div class="section-title">
+            <hr>
+            <h2> Watchlist </h2>
+        </div>
+
+        <div class="row">
+            {% for d in data %}
+            <div class="col-lg-3 col-sm-6">
+                <div class="product-item">
+                    <div class="pi-pic"
+                        style="flex-grow: 1; height: 25rem; object-fit:contain; background-color: #100000;">
+                        <a href="product?id={{d.product_id.product_id}}">
+                            <img src="media/{{d.product_id.product_image }}" alt="">
+                        </a>
+                        <div class="pi-links">
+                            <a href="product?id={{d.product_id.product_id}}" class="add-card"><i class="flaticon-bag"></i><span>Place Bid</span></a>
+                            <a href="removeWatchList?id={{d.watchlist_id}}" class="add-card dark"><i>X</i><span> - Watchlist </span></a>
+                        </div>
+                    </div>
+                    <div class="pi-text">
+                        <h6>B-${{d.product_id.base_price}}</h6>
+                        <h6>H-${{d.product_id.high_price}}</h6>
+                        <p>{{d.product_id.product_name}} </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

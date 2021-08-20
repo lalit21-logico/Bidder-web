@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<section class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 contact-info">
+                <h3>Login</h3>
+                <form class="contact-form" action='/productUpload' method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="text" id="title" name="title" placeholder="A good title here" required>
+                    <input type="file" name="myfile" class="form-control file-upload-info" id="customFileLang"
+                        placeholder="Upload image which will appear on blog">
+                    <input type="text" name="basePrice" placeholder="Base price">
+                    <textarea type="text" name="information" placeholder="Information about product..."></textarea>
+
+                    <button class="site-btn" type="submit">Create Auction</button>
+                </form>
+                <hr>
+            </div>
+
+        </div>
+    </div>
+</section>
+</hr>
+{% endblock %}

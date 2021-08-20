@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zxx">
+<head>
+	<title>Bidder Web</title>
+	<meta charset="UTF-8">
+	<meta name="description" content=" Bidder-web | Lalit patidar">
+	<meta name="keywords" content="ITESS , eCommerce, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->
+	<link href="{% static 'image/favicon.ico' %}" rel="shortcut icon"/>
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/flaticon.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+
+
+
+
+</head>
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header section -->
+	<header class="header-section">
+		<div class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-2 text-center text-lg-left">
+						<!-- logo -->
+						<a href="#" class="site-logo">
+							<img src="{% static 'image/BidderWebLogo.png' %}" alt="">
+						</a>
+					</div>
+					<div class="col-xl-6 col-lg-5">
+						<form class="header-search-form">
+							<input type="text" placeholder="Search on Bidder....">
+							<button><i class="flaticon-search"></i></button>
+						</form>
+					</div>
+					<div class="col-xl-4 col-lg-5">
+						<div class="user-panel">
+							<div class="up-item">
+								<i class="flaticon-profile"></i>
+								{% if request.session.user_email == None %}
+								<a href="/login">Login</a> or <a href="/signup">Create Account</a>
+								{% else %}
+								
+								<a href="/logout">Logout</a>
+								{% endif %}
+							</div>
+							<div class="up-item">
+								<div class="shopping-card">
+									<i class="flaticon-bag"></i>
+									{% if request.session.cart_count != None %}
+									<span>{{ request.session.cart_count}}</span>
+									{% endif %}
+								</div>
+								<a href="/cart">My-Bids</a>
+							</div>
+							{% if request.session.user_email != None %}
+							<div class="up-item">
+								<i class="flaticon-heart"></i>
+								<a href="#">Welcome {{ request.session.user_name}}</a>
+							</div>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<nav class="main-navbar">
+			<div class="container">
+				<!-- menu -->
+				<ul class="main-menu">
+					<li><a href="/">Home</a></li>
+					<li><a href="/activeList">Active Listing</a></li>
+					<li><a href="/watchList">My Watchlist</a></li>
+					<li><a href="/orderList">Orders</a></li>
+					<li><a href="/sell">Sell</a></li>
+                    <li><a href="/sellingList">My Sellings</a></li>
+                    <li><a href="/contact">Contact us</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<!-- Header section end -->
+
+    {% block body %}
+    {% endblock %}
+
+    <!-- Footer section -->
+	<section class="footer-section">
+		<div class="container">
+			<div class="col-lg-3 col-sm-6 text-center">
+				<a href="#" ><img src="{% static 'image/BidderWeb-lite.png' %}" alt=""></a>
+            </div>
+            <hr>
+            <hr>
+			<div class="row">
+				<div class="col-lg-8 col-sm-6">
+					<div class="footer-widget about-widget">
+						<h2>About</h2>
+						<p>
+                            At Softimpact, we develop innovative and creative products and services that provide total communication and information solutions. Among a plethora of services, web design and development, tailor made applications, ERPs, CRMs, e-commerce solutions, business-to-business applications, business-to-client applications, managed hosting and internet portal management are few that we offer. Satisfied clients around the globe bear testimony to the quality of our work. </p>
+						<img src="{% static 'image/cards.png' %}" alt="">
+					</div>
+				</div>
+				
+				
+				<div class="col-lg-3 col-sm-6">
+					<div class="footer-widget contact-widget">
+						<h2></h2>
+						<div class="con-info">
+							<span>C.</span>
+							<p>ITE software solution </p>
+						</div>
+						<div class="con-info">
+							<span>B.</span>
+							<p>AB Lane  Inodre, 452011, P.O. BOX 68 </p>
+						</div>
+						<div class="con-info">
+							<span>T.</span>
+							<p>+91 810388XXXX</p>
+						</div>
+						<div class="con-info">
+							<span>E.</span>
+							<p>itesoftwaresolution@yahoo.com</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="social-links-warp">
+			<div class="container">
+				<div class="social-links">
+					<a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
+					<a href="" class="google-plus"><i class="fa fa-google-plus"></i><span>g+plus</span></a>
+					<a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
+					<a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+					<a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
+					<a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
+					<a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
+				</div>
+
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> 
+<p class="text-white text-center mt-5">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This WebApp is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#9399868779" target="_blank">ITEss</a></p>
+<p class="text-white text-center mt-5">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+			</div>
+		</div>
+	</section>
+	<!-- Footer section end -->
+
+
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'js/jquery.nicescroll.min.js' %}"></script>
+	<script src="{% static 'js/jquery.zoom.min.js' %}"></script>
+	<script src="{% static 'js/jquery-ui.min.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+
+	</body>
+</html>

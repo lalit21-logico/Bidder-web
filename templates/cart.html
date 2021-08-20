@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<section class="cart-section spad">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="cart-table">
+					<h3>Your Bids</h3>
+					<div class="cart-table-warp">
+						<table>
+							<thead>
+								<tr>
+									<th class="product-th">Product</th>
+									<th class="quy-th">Base price</th>
+									<th class="size-th">High price</th>
+									<th class="total-th"> My Price</th>
+									<th class="total-th"> status </th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for d in data %}
+								<tr>
+									<td class="product-col">
+										<a href="product?id={{d.product_id.product_id}}">
+											<img src="media/{{d.product_id.product_image }}" alt="">
+										</a>
+										<div class="pc-title">
+											<a href="product?id={{d.product_id.product_id}}">
+												<h4>{{d.product_id.product_name}}</h4>
+											</a>
+										</div>
+									</td>
+									<td class="total-col">
+										<h4>${{d.product_id.base_price}}</h4>
+									</td>
+									<td class="size-col">
+										<h4>${{d.product_id.high_price}}</h4>
+									</td>
+									<td class="total-col">
+										<h4>${{d.my_price}}</h4>
+									</td>
+									<td class="total-col">
+										{% if d.product_id.high_price == d.my_price %}
+										<h4 class="h6 mb-3 font-weight-normal mt-2 text-success">Keep waiting for complete auction<br>{{d.product_id.auction_day_left}} -Days
+											left</h4>
+										{% else %}
+										<form class="contact-form" action='placeBid?id={{d.product_id.product_id}}' method="post"
+											enctype="multipart/form-data">
+											{% csrf_token %}
+											<div class="quantity">
+												<div class="pro-qty">
+													<input type="text" value="{{d.product_id.high_price}}" name="high_price">
+												
+												</div>
+												<button class="pub btn btn-primary" type="submit">Place Bid</button>
+										
+											</div>
+										
+										</form>
+										{% endif %}
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+					<div class="total-cost">
+					</div>
+				</div>
+			</div>
+		</div>
+</section>
+<!-- cart section end -->
+
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<section class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 contact-info">
+                <h3>Sign Up</h3>
+               <p>{{msg}}</p>
+                <form class="contact-form" action="/addUser" method="post">
+                    {% csrf_token%}
+                    <input type="text" class="form-input" name="name" id="name" placeholder="Your Name">
+                    <input type="email" class="form-input" name="email" id="email" placeholder="Your Email">
+                    <input type="mobile" class="form-input" name="mobile" id="mobile" placeholder="contact no">
+                    <input type="address" class="form-input" name="address" id="address" placeholder="Address">
+                     <input type="password" class="form-input" name="password" id="password" placeholder="Password">
+                     <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repeat your password"/>
+                    <button class="site-btn" type="submit" id="btn" value="Add">Sign up</button>
+                </form>
+                <hr>
+            </div>
+            <div class="col-lg-10 contact-info">
+                <a href="/login" class="site-btn sb-dark">
+                    Login
+                </a>
+            <hr>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
